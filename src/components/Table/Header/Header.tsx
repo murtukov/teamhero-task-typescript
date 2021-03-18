@@ -23,7 +23,7 @@ function Header({source, title, isSortable = true, ...props}: IHeaderProps) {
         let order: Order;
 
         if (sortOrder === SORT_ORDER.DESC) {
-            order = "DESC";
+            order = "ASC";
         } else if (sortOrder === SORT_ORDER.ASC) {
             order = "NONE";
         } else {

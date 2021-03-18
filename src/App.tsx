@@ -7,7 +7,7 @@ import TagsField from "./components/Table/fields/TagsField";
 import IconsField from "./components/Table/fields/IconsField";
 import TableProvider from "./components/Table/TableProvider";
 import testData from "./test-data";
-import TagFilter from "./components/Table/TagFilter/TagFilter";
+import TagFilter from "./components/TagFilter/TagFilter";
 import Table from "./components/Table/Table";
 
 function App() {
