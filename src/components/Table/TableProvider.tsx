@@ -39,7 +39,7 @@ function TableProvider({data, children}: ITableProviderProps) {
 
     let processed = data;
 
-    if ('' !== filterOptions.column) {
+    if (filterOptions.tags.length > 0) {
         processed = filterData(data, filterOptions);
     }
 

@@ -5,7 +5,11 @@ import {TableContext} from "../Table/TableProvider";
 
 type InputKeyPressEvent = ChangeEvent<HTMLInputElement> & KeyboardEvent;
 
-function TagFilter() {
+interface ITagFilterProps {
+    column: string
+}
+
+function TagFilter({column}: ITagFilterProps) {
     const [tags, setTags] = useState<string[]>([]);
     const [showInput, setShowInput] = useState<boolean>(false);
     const {filterOptions, setFilterOptions} = useContext(TableContext);
@@ -29,7 +33,7 @@ function TagFilter() {
         setTags(newTags);
 
         // Set context options
-        setFilterOptions({...filterOptions, tags: newTags});
+        setFilterOptions({column, tags: newTags});
 
         // Hide input field
         setShowInput(false);
@@ -66,7 +70,7 @@ function TagFilter() {
     );
 
     const renderTag = (text: string, i: number) => (
-        <div className={s.tag}>
+        <div className={s.tag} key={i}>
             <span>
                 <span>{text}</span>
                 <Icon

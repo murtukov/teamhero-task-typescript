@@ -15,7 +15,7 @@ function App() {
         <TableProvider data={testData}>
             <div className='container'>
                 <div className='left-column'>
-                    <TagFilter/>
+                    <TagFilter column='skills'/>
                 </div>
                 <div className='right-column'>
                     <Table>
