@@ -1,0 +1,85 @@
+.root {
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    text-transform: uppercase;
+    font-size: 13px;
+    font-family: montserrat, serif;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px 0 0;
+    align-items: center;
+}
+
+.header > div:first-child {
+    line-height: 40px;
+}
+
+.header > div:last-child {
+    cursor: pointer;
+    padding: 5px;
+}
+
+.header > div:last-child:hover {
+    color: #444F5F;
+}
+
+.tags {
+    display: block;
+}
+
+.tag > span {
+    display: flex;
+}
+
+.tag {
+    padding: 5px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: gray;
+    font-family: 'Montserrat', serif;
+    font-size: small;
+    font-weight: 600;
+    display: inline-block;
+    align-items: center;
+    margin: 0 5px 12px 0;
+}
+
+.tagDeleteBtn {
+    cursor: pointer;
+    margin: 0 3px 0 5px;
+}
+
+.addBtn {
+    background-color: #444F5F;
+    border-radius: 3px;
+    cursor: pointer;
+    height: 18px;
+    padding: 2px 3px;
+    vertical-align: middle;
+}
+
+.input {
+    border: none;
+    font-size: 14px;
+    padding: 0;
+}
+
+.input:focus {
+    outline: unset;
+}
+
+.inputWrapper {
+    background-color: white;
+    border-radius: 5px;
+    display: inline-block;
+    padding: 5px;
+    vertical-align: middle;
+}
+
+.inputWrapper > span:last-child {
+    cursor: pointer;
+}
