@@ -43,7 +43,7 @@ function TableProvider({data, children}: ITableProviderProps) {
     let processed = data;
 
     if (filterOptions.tags.length > 0) {
-        processed = filterData(data, filterOptions);
+        processed = filterData(processed, filterOptions);
     }
 
     if ('NONE' !== sortOptions.order) {
@@ -74,8 +74,8 @@ function TableProvider({data, children}: ITableProviderProps) {
 function filterData(array: PlainObject[], options: IFilterOptions) {
     return array.filter((row) => {
         return options.tags.every(filterTag => {
-            for (let tag of row[options.column]) {
-                if (filterTag.toLowerCase() === tag.toLowerCase()) {
+            for (let tableTag of row[options.column]) {
+                if (filterTag.toLowerCase() === tableTag.toLowerCase()) {
                     return true;
                 }
             }
@@ -83,12 +83,8 @@ function filterData(array: PlainObject[], options: IFilterOptions) {
         })
     });
 
-    // Simpler version if case-sensitive filtering needed
-    /*
-     *  return array.filter((row) => {
-     *      return options.tags.every(v => row[options.column].includes(v))
-     *  });
-     */
+    // Simpler version if case-sensitive filtering required
+    // return array.filter(row => options.tags.every(v => row[options.column].includes(v)));
 }
 
 /**
