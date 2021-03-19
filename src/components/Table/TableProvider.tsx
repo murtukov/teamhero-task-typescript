@@ -23,12 +23,12 @@ interface IContextData {
 
 interface ISortOptions {
     column: string,
-    order: Order
+    order:  Order
 }
 
 interface IFilterOptions {
     column: string,
-    tags: string[]
+    tags:   string[]
 }
 
 interface ITableProviderProps {
@@ -64,12 +64,7 @@ function TableProvider({data, children}: ITableProviderProps) {
 }
 
 /**
- * Removes objects from array that contain specific tags.
- *
- * @param array   - Array to remove objects from.
- * @param options - List of tags that object must have in order to be removed
- *
- * @return {PlainObject[]}
+ * Removes objects from input array that contain specific tags.
  */
 function filterData(array: PlainObject[], options: IFilterOptions) {
     return array.filter((row) => {
@@ -88,21 +83,19 @@ function filterData(array: PlainObject[], options: IFilterOptions) {
 }
 
 /**
- * Returns a sorted copy of an array.
- *
- * @param data    - input array.
- * @param options - sorting options.
- *
- * @return sorted - sorted copy of source array.
+ * Returns a sorted copy of an input array.
  */
-function sortData(data: PlainObject[], options: ISortOptions) {
-    return [...data].sort((a, b) => {
+function sortData(input: PlainObject[], options: ISortOptions) {
+    return [...input].sort((a, b) => {
+
         if (a[options.column] < b[options.column]) {
             return options.order === 'DESC' ? -1 : 1;
         }
+
         if (a[options.column] > b[options.column]) {
             return options.order === 'DESC' ? 1 : -1;
         }
+
         return 0;
     });
 }
