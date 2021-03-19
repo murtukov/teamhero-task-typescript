@@ -1,7 +1,7 @@
 import React, { createContext, Dispatch, SetStateAction, ReactNode, useState } from 'react';
 import {Order, PlainObject} from "../../common/types";
 
-export const TableContext = createContext<ContextData>({
+export const TableContext = createContext<IContextData>({
     // Default values
     data:             [],
     sortOptions:      { column: '', order: 'NONE' },
@@ -10,20 +10,20 @@ export const TableContext = createContext<ContextData>({
     setSortOptions:   () => {}
 });
 
-interface ContextData {
+interface IContextData {
     data:             PlainObject[],
-    sortOptions:      SortOptions,
-    filterOptions:    FilterOptions,
-    setFilterOptions: Dispatch<SetStateAction<FilterOptions>>,
-    setSortOptions:   Dispatch<SetStateAction<SortOptions>>
+    sortOptions:      ISortOptions,
+    filterOptions:    IFilterOptions,
+    setFilterOptions: Dispatch<SetStateAction<IFilterOptions>>,
+    setSortOptions:   Dispatch<SetStateAction<ISortOptions>>
 }
 
-interface SortOptions {
+interface ISortOptions {
     column: string,
     order: Order
 }
 
-interface FilterOptions {
+interface IFilterOptions {
     column: string,
     tags: string[]
 }
@@ -34,8 +34,8 @@ interface ITableProviderProps {
 }
 
 function TableProvider({data, children}: ITableProviderProps) {
-    const [filterOptions, setFilterOptions] = useState<FilterOptions>({tags: [], column: ''});
-    const [sortOptions, setSortOptions]     = useState<SortOptions>({order: 'NONE', column: ''});
+    const [filterOptions, setFilterOptions] = useState<IFilterOptions>({tags: [], column: ''});
+    const [sortOptions, setSortOptions]     = useState<ISortOptions>({order: 'NONE', column: ''});
 
     let processed = data;
 
@@ -68,7 +68,7 @@ function TableProvider({data, children}: ITableProviderProps) {
  *
  * @return {PlainObject[]}
  */
-function filterData(array: PlainObject[], options: FilterOptions) {
+function filterData(array: PlainObject[], options: IFilterOptions) {
     return array.filter((row) => {
         return options.tags.every(v => row[options.column].includes(v))
     });
@@ -82,7 +82,7 @@ function filterData(array: PlainObject[], options: FilterOptions) {
  *
  * @return sorted - sorted copy of source array.
  */
-function sortData(data: PlainObject[], options: SortOptions) {
+function sortData(data: PlainObject[], options: ISortOptions) {
     return [...data].sort((a, b) => {
         if (a[options.column] < b[options.column]) {
             return options.order === 'DESC' ? -1 : 1;

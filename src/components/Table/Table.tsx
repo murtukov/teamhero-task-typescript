@@ -4,11 +4,11 @@ import s from './styles.module.css';
 import {TableContext} from "./TableProvider";
 import {IFieldProps} from "./fields/sharedProps";
 
-interface TableProps {
+interface ITableProps {
     children: React.ReactElement<IFieldProps>[]
 }
 
-function Table({children: fields}: TableProps) {
+function Table({children: fields}: ITableProps) {
     const {data} = useContext(TableContext);
 
     // Create mapping

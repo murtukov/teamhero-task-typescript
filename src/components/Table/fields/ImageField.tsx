@@ -17,7 +17,13 @@ function ImageField({data, shape = 'circle'}: IImageFieldProps) {
 
     return (
         <td className={c.root}>
-            <img src={data} alt='avatar' width={35} height={35} className={c.img}/>
+            <img
+                src={data}
+                alt='avatar'
+                width={35}
+                height={35}
+                className={c.img}
+            />
         </td>
     );
 }
