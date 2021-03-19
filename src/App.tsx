@@ -7,7 +7,7 @@ import TagsField from "./components/Table/fields/TagsField";
 import IconsField from "./components/Table/fields/IconsField";
 import TableProvider from "./components/Table/TableProvider";
 import testData from "./test-data";
-import TagFilter from "./components/TagFilter/TagFilter";
+import FilterPanel from "./components/FilterPanel/FilterPanel";
 import Table from "./components/Table/Table";
 import Icon, {IconName} from "./components/Icon/Icon";
 
@@ -21,7 +21,7 @@ function App() {
         <TableProvider data={testData}>
             <div className='container'>
                 <div className='left-column'>
-                    <TagFilter column='skills'/>
+                    <FilterPanel column='skills'/>
                 </div>
                 <div className='right-column'>
                     <Table>

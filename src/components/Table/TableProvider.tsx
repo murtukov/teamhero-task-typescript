@@ -1,11 +1,14 @@
 import React, { createContext, Dispatch, SetStateAction, ReactNode, useState } from 'react';
 import {Order, PlainObject} from "../../common/types";
 
+const defaultFilterOptions: IFilterOptions = { tags: [], column: '' };
+const defaultSortOptions: ISortOptions     = { order: 'NONE', column: '' };
+
 export const TableContext = createContext<IContextData>({
     // Default values
     data:             [],
-    sortOptions:      { column: '', order: 'NONE' },
-    filterOptions:    { column: '', tags: [] },
+    sortOptions:      defaultSortOptions,
+    filterOptions:    defaultFilterOptions,
     setFilterOptions: () => {},
     setSortOptions:   () => {}
 });
@@ -34,8 +37,8 @@ interface ITableProviderProps {
 }
 
 function TableProvider({data, children}: ITableProviderProps) {
-    const [filterOptions, setFilterOptions] = useState<IFilterOptions>({tags: [], column: ''});
-    const [sortOptions, setSortOptions]     = useState<ISortOptions>({order: 'NONE', column: ''});
+    const [filterOptions, setFilterOptions] = useState(defaultFilterOptions);
+    const [sortOptions, setSortOptions]     = useState(defaultSortOptions);
 
     let processed = data;
 
@@ -44,7 +47,7 @@ function TableProvider({data, children}: ITableProviderProps) {
     }
 
     if ('NONE' !== sortOptions.order) {
-        processed = sortData(data, sortOptions);
+        processed = sortData(processed, sortOptions);
     }
 
     return (

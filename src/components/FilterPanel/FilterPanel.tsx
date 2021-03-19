@@ -9,10 +9,10 @@ interface ITagFilterProps {
     column: string
 }
 
-function TagFilter({column}: ITagFilterProps) {
+function FilterPanel({column}: ITagFilterProps) {
 
     const {filterOptions, setFilterOptions} = useContext(TableContext);
-    const [showInput, setShowInput]         = useState<boolean>(false);
+    const [showInput, setShowInput]         = useState(false);
 
     function handleAddClick() {
         setShowInput(true);
@@ -110,4 +110,4 @@ function TagFilter({column}: ITagFilterProps) {
     );
 }
 
-export default TagFilter;
+export default FilterPanel;
