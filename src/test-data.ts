@@ -35,7 +35,7 @@ const testData: DataEntry[] = [
         firstName: 'Timur',
         lastName: 'Murtukov',
         email: 'murtukov@gmail.com',
-        skills: ['React', 'Symfony'],
+        skills: ['React', 'Symfony', 'Redux'],
         todos: ['time', "flash", "document", "link"],
         location: 'Berlin'
     },
@@ -53,7 +53,7 @@ const testData: DataEntry[] = [
         firstName: 'Timur',
         lastName: 'Murtukov',
         email: 'murtukov@gmail.com',
-        skills: ['English', 'Table Service'],
+        skills: ['English', 'Russian', 'Redux'],
         todos: ['time', "flash", "document", "link"],
         location: 'Berlin'
     },
@@ -83,6 +83,15 @@ const testData: DataEntry[] = [
         skills: ['Presidency', 'Speech'],
         todos: ['time', "flash", "document", "link"],
         location: 'Washington'
+    },
+    {
+        avatar: img,
+        firstName: 'Dan',
+        lastName: 'Abramov',
+        email: 'abramovic@facebook.com',
+        skills: ['React', 'Redux', 'JavaScript'],
+        todos: ['time', "flash", "document", "link"],
+        location: 'Los Angeles'
     }
 ];
 

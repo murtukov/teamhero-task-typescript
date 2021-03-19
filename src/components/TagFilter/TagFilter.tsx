@@ -13,7 +13,6 @@ function TagFilter({column}: ITagFilterProps) {
 
     const {filterOptions, setFilterOptions} = useContext(TableContext);
     const [showInput, setShowInput]         = useState<boolean>(false);
-    const [tags, setTags]                   = useState<string[]>([]);
 
     function handleAddClick() {
         setShowInput(true);
@@ -28,28 +27,20 @@ function TagFilter({column}: ITagFilterProps) {
             return;
         }
 
-        const newTags = [...tags, event.target.value];
+        const newTags = [...filterOptions.tags, event.target.value];
 
-        // Set tags locally
-        setTags(newTags);
-
-        // Set context options
         setFilterOptions({column, tags: newTags});
-
-        // Hide input field
         setShowInput(false);
     }
 
     function handleDeleteClick(index: number) {
-        const newTags = [...tags];
+        const newTags = [...filterOptions.tags];
         newTags.splice(index, 1);
 
-        setTags(newTags);
         setFilterOptions({...filterOptions, tags: newTags});
     }
 
     function handleCleanClick() {
-        setTags([]);
         setShowInput(false);
         setFilterOptions({...filterOptions, tags: []});
     }
@@ -88,7 +79,7 @@ function TagFilter({column}: ITagFilterProps) {
         <div className={s.root}>
             <div className={s.header}>
                 <span>Filter by skill</span>
-                {tags.length > 0 &&
+                {filterOptions.tags.length > 0 &&
                     <div onClick={handleCleanClick} title='Remove all tags'>
                         <Icon
                             icon='trash'
@@ -100,7 +91,7 @@ function TagFilter({column}: ITagFilterProps) {
             </div>
 
             <div className={s.tags}>
-                {tags.map(tagRenderer)}
+                {filterOptions.tags.map(tagRenderer)}
 
                 {showInput
                     ? renderInput()
