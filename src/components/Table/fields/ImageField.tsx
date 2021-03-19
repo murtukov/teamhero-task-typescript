@@ -1,11 +1,11 @@
 import React from 'react';
 import {createUseStyles} from "react-jss";
 import {styles as sharedStyles} from "./styles";
-import {IFieldProps} from "./types";
+import {IFieldProps} from "./sharedProps";
 
 export interface IImageFieldProps extends IFieldProps {
     data?: string,
-    shape?: 'circle' | 'rect'
+    shape?: 'circle' | 'rect',
 }
 
 function ImageField({data, shape = 'circle'}: IImageFieldProps) {

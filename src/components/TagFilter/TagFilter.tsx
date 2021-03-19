@@ -10,16 +10,17 @@ interface ITagFilterProps {
 }
 
 function TagFilter({column}: ITagFilterProps) {
-    const [tags, setTags] = useState<string[]>([]);
-    const [showInput, setShowInput] = useState<boolean>(false);
+
     const {filterOptions, setFilterOptions} = useContext(TableContext);
+    const [showInput, setShowInput]         = useState<boolean>(false);
+    const [tags, setTags]                   = useState<string[]>([]);
 
     function handleAddClick() {
         setShowInput(true);
     }
 
     function handleKeyPress(event: InputKeyPressEvent) {
-        if(event.key !== 'Enter'){
+        if(event.key !== 'Enter') {
             return;
         }
 
@@ -69,7 +70,7 @@ function TagFilter({column}: ITagFilterProps) {
         </span>
     );
 
-    const renderTag = (text: string, i: number) => (
+    const tagRenderer = (text: string, i: number) => (
         <div className={s.tag} key={i}>
             <span>
                 <span>{text}</span>
@@ -85,6 +86,7 @@ function TagFilter({column}: ITagFilterProps) {
 
     return (
         <div className={s.root}>
+            {/* TODO: fix stiles */}
             <div className={s.header}>
                 <div>Filter by skill</div>
                 {tags.length > 0 &&
@@ -98,7 +100,7 @@ function TagFilter({column}: ITagFilterProps) {
                 }
             </div>
             <div className={s.tags}>
-                {tags.map(renderTag)}
+                {tags.map(tagRenderer)}
 
                 {showInput
                     ? renderInput()

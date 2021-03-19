@@ -27,7 +27,9 @@
 }
 
 .tags {
-    display: block;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
 }
 
 .tag > span {
@@ -51,6 +53,7 @@
 .tagDeleteBtn {
     cursor: pointer;
     margin: 0 3px 0 5px;
+    display: flex;
 }
 
 .addBtn {
@@ -60,6 +63,7 @@
     height: 18px;
     padding: 2px 3px;
     vertical-align: middle;
+    margin-bottom: 12px;
 }
 
 .input {
@@ -75,11 +79,16 @@
 .inputWrapper {
     background-color: white;
     border-radius: 5px;
-    display: inline-block;
+    display: flex;
     padding: 5px;
     vertical-align: middle;
+    width: 190px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
 }
 
 .inputWrapper > span:last-child {
     cursor: pointer;
+    display: flex;
 }

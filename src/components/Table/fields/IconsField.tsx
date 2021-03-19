@@ -1,14 +1,15 @@
 import React from 'react';
-import useStyles from "./styles";
-import {IFieldProps} from "./types";
-import {Icon} from "@blueprintjs/core";
-import { IconName } from "@blueprintjs/icons"
+import { IFieldProps } from "./sharedProps";
+import { styles as sharedStyles } from "./styles";
+import { createUseStyles } from "react-jss";
 
 export interface IIconsFieldProps extends IFieldProps {
-    data?: IconName[]
+    data?: any[],
+    // The icon rendering method is defined by users
+    renderer: (icon: any, index: number) => JSX.Element
 }
 
-function IconsField({data}: IIconsFieldProps) {
+function IconsField({data, renderer}: IIconsFieldProps) {
     const c = useStyles();
 
     if (undefined === data) {
@@ -16,13 +17,20 @@ function IconsField({data}: IIconsFieldProps) {
     }
 
     return (
-        <td
-            className={c.root}
-            style={{display: 'flex', justifyContent: 'space-between'}}
-        >
-            {data.map((entry, i) => <Icon icon={entry} color='#ff6150' key={i}/>)}
+        <td className={c.root}>
+            <span className={c.wrapper}>
+                {data.map((icon, i) => renderer(icon, i))}
+            </span>
         </td>
     );
 }
+
+const useStyles = createUseStyles({
+    ...sharedStyles,
+    wrapper: {
+        display: 'flex',
+        justifyContent: 'space-between'
+    }
+})
 
 export default IconsField;

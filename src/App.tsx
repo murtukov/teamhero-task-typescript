@@ -9,8 +9,14 @@ import TableProvider from "./components/Table/TableProvider";
 import testData from "./test-data";
 import TagFilter from "./components/TagFilter/TagFilter";
 import Table from "./components/Table/Table";
+import Icon, {IconName} from "./components/Icon/Icon";
 
 function App() {
+    // This callback is defined by users to configure icons rendering.
+    const iconRenderer = (iconName: IconName, i: number) => (
+        <Icon key={i} name={iconName} />
+    );
+
     return (
         <TableProvider data={testData}>
             <div className='container'>
@@ -24,8 +30,8 @@ function App() {
                         <StringField title='Last Name' source='lastName' bold/>
                         <EmailField  title='Email' source='email'/>
                         <TagsField   title='Skills' source='skills'/>
-                        <IconsField  title='Todos' source='todos'/>
-                        <StringField title='Location' source='location'/>
+                        <IconsField  title='Todos' source='todos' renderer={iconRenderer}/>
+                        <StringField title='City' source='location'/>
                     </Table>
                 </div>
             </div>

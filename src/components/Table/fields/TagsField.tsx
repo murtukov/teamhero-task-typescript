@@ -1,6 +1,6 @@
 import React from 'react';
 import {createUseStyles} from "react-jss";
-import {IFieldProps} from "./types";
+import {IFieldProps} from "./sharedProps";
 import {styles as sharedStyles} from "./styles";
 
 export interface ITagsFieldProps extends IFieldProps {

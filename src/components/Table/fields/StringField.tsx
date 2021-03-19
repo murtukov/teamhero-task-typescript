@@ -1,5 +1,5 @@
 import React, {CSSProperties} from 'react';
-import {IFieldProps} from "./types";
+import {IFieldProps} from "./sharedProps";
 import {styles as sharedStyles} from "./styles";
 import {createUseStyles} from "react-jss";
 

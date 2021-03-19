@@ -1,17 +1,17 @@
 import img from './assets/img/avatar.jpeg';
 import {IconName} from "@blueprintjs/icons";
 
-type TableEntry = {
-    avatar: string,
-    firstName: string,
-    lastName: string,
-    email: string,
-    skills: string[],
-    todos: IconName[],
-    location: string
+type DataEntry = {
+    avatar:     string,
+    firstName:  string,
+    lastName:   string,
+    email:      string,
+    skills:     string[],
+    todos:      IconName[],
+    location:   string,
 }
 
-const testData: TableEntry[] = [
+const testData: DataEntry[] = [
     {
         avatar: img,
         firstName: 'Alfred',
@@ -66,6 +66,15 @@ const testData: TableEntry[] = [
         todos: ['time', "flash", "document", "link"],
         location: 'Warsaw'
     },
+    {
+        avatar: img,
+        firstName: 'Martin',
+        lastName: 'Scorsese',
+        email: 'shutter.island@thriller.com',
+        skills: ['Directing', 'Acting', 'Russian'],
+        location: 'San Paulo',
+        todos: ['time', "flash", "document", "link"]
+    }
 ];
 
 export default testData;

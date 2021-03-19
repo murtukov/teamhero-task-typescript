@@ -2,7 +2,7 @@ import React, {useContext} from 'react';
 import Header from "./Header/Header";
 import s from './styles.module.css';
 import {TableContext} from "./TableProvider";
-import {IFieldProps} from "./fields/types";
+import {IFieldProps} from "./fields/sharedProps";
 
 interface TableProps {
     children: React.ReactElement<IFieldProps>[]
