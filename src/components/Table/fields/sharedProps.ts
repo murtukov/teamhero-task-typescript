@@ -4,4 +4,5 @@ export interface IFieldProps {
     source: string,
     title?: string | null,
     styles?: CSSProperties,
+    width?: string | number
 }

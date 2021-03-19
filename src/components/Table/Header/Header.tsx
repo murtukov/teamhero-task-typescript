@@ -1,8 +1,9 @@
-import React, {useContext, useEffect, useState} from 'react';
-import {SORT_ORDER} from "../../../common/constants";
-import {TableContext} from "../TableProvider";
-import {Order} from "../../../common/types";
+import React, { useContext, useEffect, useState } from 'react';
+import { SORT_ORDER } from "../../../common/constants";
+import { TableContext } from "../TableProvider";
+import { Order } from "../../../common/types";
 import s from './styles.module.css';
+import {createUseStyles} from "react-jss";
 
 const arrows: { ASC: string; DESC: string } = {
     DESC: '▼',
@@ -10,14 +11,17 @@ const arrows: { ASC: string; DESC: string } = {
 };
 
 interface IHeaderProps {
-    source: string,
-    title?: string | null,
-    isSortable: boolean
+    isSortable: boolean,
+    source:     string,
+    title?:     string | null,
+    width?:     string | number
 }
 
 function Header({source, title, isSortable = true, ...props}: IHeaderProps) {
     const [sortOrder, updateSortOrder]  = useState<Order>("NONE");
     const {sortOptions, setSortOptions} = useContext(TableContext);
+
+    const c = useStyles(sortOrder);
 
     useEffect(() => {
         // Reset sort order on this column, if
@@ -47,7 +51,9 @@ function Header({source, title, isSortable = true, ...props}: IHeaderProps) {
 
     return (
         <th {...props} onClick={handleClick} className={s.root}>
-            <span>{title}</span>
+            <span className={c.title}>
+                {title}
+            </span>
 
             {sortOrder !== "NONE" && sortOptions.column === source && (
                 <i className={s.arrow}>
@@ -57,5 +63,11 @@ function Header({source, title, isSortable = true, ...props}: IHeaderProps) {
         </th>
     );
 }
+
+const useStyles = createUseStyles({
+    title: (sortOrder: Order) => ({
+        fontWeight: sortOrder !== "NONE" ? 'bold' : 'normal'
+    })
+});
 
 export default Header;

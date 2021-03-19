@@ -16,6 +16,7 @@ function Table({children: fields}: ITableProps) {
         builderProps: {
             source: props.source,
             title: props.title,
+            width: props.width,
             isSortable: true,
         },
         fieldProps: props,

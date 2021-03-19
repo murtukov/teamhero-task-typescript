@@ -25,13 +25,13 @@ function App() {
                 </div>
                 <div className='right-column'>
                     <Table>
-                        <ImageField  title={null} source='avatar'/>
-                        <StringField title='First Name' source='firstName' bold/>
-                        <StringField title='Last Name' source='lastName' bold/>
+                        <ImageField  title={null} source='avatar' width={35}/>
+                        <StringField title='First Name' source='firstName' bold width={105}/>
+                        <StringField title='Last Name' source='lastName' bold />
                         <EmailField  title='Email' source='email'/>
                         <TagsField   title='Skills' source='skills'/>
-                        <IconsField  title='Todos' source='todos' renderer={iconRenderer}/>
-                        <StringField title='City' source='location'/>
+                        <IconsField  title='Todos' source='todos' renderer={iconRenderer} />
+                        <StringField title='City' source='location' />
                     </Table>
                 </div>
             </div>
