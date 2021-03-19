@@ -19,7 +19,7 @@ function FilterPanel({column}: ITagFilterProps) {
     }
 
     function handleKeyPress(event: InputKeyPressEvent) {
-        if(event.key !== 'Enter') {
+        if(event.key !== 'Enter' || event.target.value.length === 0) {
             return;
         }
 

@@ -73,8 +73,22 @@ function TableProvider({data, children}: ITableProviderProps) {
  */
 function filterData(array: PlainObject[], options: IFilterOptions) {
     return array.filter((row) => {
-        return options.tags.every(v => row[options.column].includes(v))
+        return options.tags.every(filterTag => {
+            for (let tag of row[options.column]) {
+                if (filterTag.toLowerCase() === tag.toLowerCase()) {
+                    return true;
+                }
+            }
+            return false;
+        })
     });
+
+    // Simpler version if case-sensitive filtering needed
+    /*
+     *  return array.filter((row) => {
+     *      return options.tags.every(v => row[options.column].includes(v))
+     *  });
+     */
 }
 
 /**
