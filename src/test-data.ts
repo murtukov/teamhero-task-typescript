@@ -1,5 +1,5 @@
 import img from './assets/img/avatar.jpeg';
-import {IconName} from "@blueprintjs/icons";
+import {IconName} from "./components/Icon/Icon";
 
 type DataEntry = {
     avatar:     string,
@@ -73,7 +73,16 @@ const testData: DataEntry[] = [
         email: 'shutter.island@thriller.com',
         skills: ['Directing', 'Acting', 'Russian'],
         location: 'San Paulo',
-        todos: ['time', "flash", "document", "link"]
+        todos: ['time', "flash", "document", "link"],
+    },
+    {
+        avatar: img,
+        firstName: 'Barack',
+        lastName: 'Obama',
+        email: 'b.obama@white-house.com',
+        skills: ['Presidency', 'Speech'],
+        todos: ['time', "flash", "document", "link"],
+        location: 'Washington'
     }
 ];
 

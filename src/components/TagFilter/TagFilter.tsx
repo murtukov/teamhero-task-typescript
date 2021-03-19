@@ -86,9 +86,8 @@ function TagFilter({column}: ITagFilterProps) {
 
     return (
         <div className={s.root}>
-            {/* TODO: fix stiles */}
             <div className={s.header}>
-                <div>Filter by skill</div>
+                <span>Filter by skill</span>
                 {tags.length > 0 &&
                     <div onClick={handleCleanClick} title='Remove all tags'>
                         <Icon
@@ -99,6 +98,7 @@ function TagFilter({column}: ITagFilterProps) {
                     </div>
                 }
             </div>
+
             <div className={s.tags}>
                 {tags.map(tagRenderer)}
 
