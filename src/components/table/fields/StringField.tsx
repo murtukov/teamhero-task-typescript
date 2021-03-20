@@ -17,9 +17,9 @@ function StringField({data, bold = false}: IStringFieldProps) {
     }
 
     return (
-        <td className={classes.root} style={styles}>
+        <div className={classes.root} style={styles}>
             {data}
-        </td>
+        </div>
     );
 }
 

@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import Header from "./Header/Header";
+import HeaderField from "./header-field/HeaderField";
 import s from './styles.module.css';
 import {TableContext} from "./TableProvider";
 import {IFieldProps} from "./fields/sharedProps";
@@ -24,28 +24,25 @@ function Table({children: fields}: ITableProps) {
     }));
 
     return (
-        <table className={s.root}>
-            <thead>
-            <tr>
+        <div className={s.root}>
+            <div className={s.headerRow}>
                 {columns.map(({builderProps}, i) =>
-                    <Header {...builderProps} key={i}/>
+                    <HeaderField {...builderProps} key={i}/>
                 )}
-            </tr>
-            </thead>
-            <tbody>
-                {data.map((row, i) =>
-                    <tr className={s.row} key={i}>
-                        {columns.map(({builderProps, type: Field, fieldProps}, j) =>
-                            <Field
-                                data={row[builderProps.source]}
-                                {...fieldProps}
-                                key={j}
-                            />
-                        )}
-                    </tr>
-                )}
-            </tbody>
-        </table>
+            </div>
+
+            {data.map((row, i) =>
+                <div className={s.row} key={i}>
+                    {columns.map(({builderProps, type: Field, fieldProps}, j) =>
+                        <Field
+                            data={row[builderProps.source]}
+                            {...fieldProps}
+                            key={j}
+                        />
+                    )}
+                </div>
+            )}
+        </div>
     );
 }
 

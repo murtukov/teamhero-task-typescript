@@ -17,11 +17,11 @@ function IconsField({data, renderer}: IIconsFieldProps) {
     }
 
     return (
-        <td className={c.root}>
+        <div className={c.root}>
             <span className={c.wrapper}>
                 {data.map((icon, i) => renderer(icon, i))}
             </span>
-        </td>
+        </div>
     );
 }
 

@@ -13,10 +13,15 @@
 }
 
 .row {
+    display: table-row;
     background-color: white;
     border-bottom: 1px solid #eaeaea;
 }
 
 .row:last-child {
     border-bottom: none;
+}
+
+.headerRow {
+    display: table-row;
 }

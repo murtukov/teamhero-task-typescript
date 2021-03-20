@@ -1,5 +1,5 @@
 import img from './assets/img/avatar.jpeg';
-import {IconName} from "./components/Icon/Icon";
+import {IconName} from "./components/icon/Icon";
 
 type DataEntry = {
     avatar:     string,

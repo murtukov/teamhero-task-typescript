@@ -1,7 +1,7 @@
 import React, {ChangeEvent, KeyboardEvent, useContext, useState} from 'react';
 import {Icon} from "@blueprintjs/core";
 import s from './styles.module.css';
-import {TableContext} from "../Table/TableProvider";
+import {TableContext} from "../table/TableProvider";
 
 type InputKeyPressEvent = ChangeEvent<HTMLInputElement> & KeyboardEvent;
 

@@ -1,9 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, {CSSProperties, useContext, useEffect, useState} from 'react';
 import { SORT_ORDER } from "../../../common/constants";
 import { TableContext } from "../TableProvider";
 import { Order } from "../../../common/types";
+import { createUseStyles } from "react-jss";
 import s from './styles.module.css';
-import {createUseStyles} from "react-jss";
 
 const arrows: { ASC: string; DESC: string } = {
     DESC: '▼',
@@ -17,7 +17,7 @@ interface IHeaderProps {
     width?:     string | number
 }
 
-function Header({source, title, isSortable = true, ...props}: IHeaderProps) {
+function HeaderField({source, title, isSortable = true, ...props}: IHeaderProps) {
     const [sortOrder, updateSortOrder]  = useState<Order>("NONE");
     const {sortOptions, setSortOptions} = useContext(TableContext);
 
@@ -50,7 +50,7 @@ function Header({source, title, isSortable = true, ...props}: IHeaderProps) {
     }
 
     return (
-        <th {...props} onClick={handleClick} className={s.root}>
+        <div {...props} onClick={handleClick} className={s.root} style={resolveStyles(props)}>
             <span className={c.title}>
                 {title}
             </span>
@@ -60,7 +60,7 @@ function Header({source, title, isSortable = true, ...props}: IHeaderProps) {
                     {arrows[sortOrder]}
                 </i>
             )}
-        </th>
+        </div>
     );
 }
 
@@ -70,4 +70,14 @@ const useStyles = createUseStyles({
     })
 });
 
-export default Header;
+function resolveStyles({width}: Partial<IHeaderProps>): CSSProperties {
+    const styles: CSSProperties = {};
+
+    if (undefined !== width) {
+        styles.width = typeof width === 'string' ? width : width + 'px';
+    }
+
+    return styles;
+}
+
+export default HeaderField;

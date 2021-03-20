@@ -24,13 +24,13 @@ function TagsField({data, source}: ITagsFieldProps) {
     }
 
     return (
-        <td className={c.root}>
+        <div className={c.root}>
             {data.map((tag, i) =>
                 <span className={c.tag} onClick={() => handleClick(tag)} key={i}>
                     {tag}
                 </span>
             )}
-        </td>
+        </div>
     );
 }
 
@@ -41,7 +41,7 @@ const useStyles = createUseStyles({
         padding: 5,
         borderRadius: 5,
         marginRight: 7,
-        cursor: 'pointer'
+        cursor: 'pointer',
     },
 });
 
