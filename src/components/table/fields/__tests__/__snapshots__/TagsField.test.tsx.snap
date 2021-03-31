@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TagsField component renders correctly 1`] = `
+<div
+  class="cell-0-2-1 cell-d0-0-2-3"
+>
+  <span
+    class="tag-0-2-2"
+  >
+    One
+  </span>
+  <span
+    class="tag-0-2-2"
+  >
+    Two
+  </span>
+  <span
+    class="tag-0-2-2"
+  >
+    Three
+  </span>
+</div>
+`;

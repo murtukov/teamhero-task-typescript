@@ -83,7 +83,7 @@ function filterData(array: PlainObject[], options: IFilterOptions) {
 }
 
 /**
- * Returns a sorted copy of an input array.
+ * Returns a sorted copy of input array.
  */
 function sortData(input: PlainObject[], options: ISortOptions) {
     return [...input].sort((a, b) => {

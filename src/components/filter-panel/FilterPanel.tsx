@@ -9,7 +9,7 @@ interface ITagFilterProps {
     column: string
 }
 
-function FilterPanel({column}: ITagFilterProps) {
+function FilterPanel({column, ...rest}: ITagFilterProps) {
 
     const {filterOptions, setFilterOptions} = useContext(TableContext);
     const [showInput, setShowInput]         = useState(false);
@@ -20,10 +20,6 @@ function FilterPanel({column}: ITagFilterProps) {
 
     function handleKeyPress(event: InputKeyPressEvent) {
         if(event.key !== 'Enter' || event.target.value.length === 0) {
-            return;
-        }
-
-        if (event.target.value.length === 0) {
             return;
         }
 
@@ -65,18 +61,20 @@ function FilterPanel({column}: ITagFilterProps) {
         <div className={s.tag} key={i}>
             <span>
                 <span>{text}</span>
-                <Icon
-                    icon='delete'
-                    className={s.tagDeleteBtn}
-                    color='#444F5F'
-                    onClick={() => handleDeleteClick(i)}
-                />
+                <span title='delete'>
+                    <Icon
+                        icon='delete'
+                        className={s.tagDeleteBtn}
+                        color='#444F5F'
+                        onClick={() => handleDeleteClick(i)}
+                    />
+                </span>
             </span>
         </div>
     );
 
     return (
-        <div className={s.root}>
+        <div className={s.root} {...rest}>
             <div className={s.header}>
                 <span>Filter by skill</span>
                 {filterOptions.tags.length > 0 &&

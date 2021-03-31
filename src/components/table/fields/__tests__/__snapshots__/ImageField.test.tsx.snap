@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ImageField component matches snapshot 1`] = `
+<div
+  class="cell-0-2-1 cell-d0-0-2-3"
+>
+  <img
+    alt="avatar"
+    class="img-0-2-2"
+    height="35"
+    src="about:blank"
+    width="35"
+  />
+</div>
+`;

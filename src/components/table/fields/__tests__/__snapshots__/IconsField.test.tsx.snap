@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IconsField component renders correctly 1`] = `
+<div
+  class="cell-0-2-1 cell-d0-0-2-3"
+>
+  <span
+    class="wrapper-0-2-2"
+  >
+    <span>
+      cross
+    </span>
+    <span>
+      plus
+    </span>
+    <span>
+      flash
+    </span>
+  </span>
+</div>
+`;

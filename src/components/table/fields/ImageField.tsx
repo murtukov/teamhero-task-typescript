@@ -16,7 +16,7 @@ function ImageField({data, shape = 'circle'}: IImageFieldProps) {
     }
 
     return (
-        <div className={c.root}>
+        <div className={c.cell}>
             <img
                 src={data}
                 alt='avatar'

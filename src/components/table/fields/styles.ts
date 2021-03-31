@@ -1,13 +1,14 @@
-import {createUseStyles} from "react-jss";
-import {CSSProperties} from "react";
+import { createUseStyles } from "react-jss";
+import { CSSProperties } from "react";
 
 export const styles = {
-    root: (styles: CSSProperties) => ({
+    cell: (styles: CSSProperties) => ({
+        backgroundColor: 'white',
         display: "table-cell",
         textAlign: "left",
         padding: 15,
         verticalAlign: 'middle',
-        ...styles
+        ...styles,
     })
 };
 

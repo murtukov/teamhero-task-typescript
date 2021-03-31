@@ -14,7 +14,7 @@ function TagsField({data, source}: ITagsFieldProps) {
 
     function handleClick(tagName: string) {
         setFilterOptions({
-            column: source,
+            column: source || '',
             tags: [...filterOptions.tags, tagName]
         })
     }
@@ -24,7 +24,7 @@ function TagsField({data, source}: ITagsFieldProps) {
     }
 
     return (
-        <div className={c.root}>
+        <div className={c.cell}>
             {data.map((tag, i) =>
                 <span className={c.tag} onClick={() => handleClick(tag)} key={i}>
                     {tag}

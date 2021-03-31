@@ -10,11 +10,11 @@ const arrows: { ASC: string; DESC: string } = {
     ASC: '▲'
 };
 
-interface IHeaderProps {
-    isSortable: boolean,
-    source:     string,
-    title?:     string | null,
-    width?:     string | number
+export interface IHeaderProps {
+    isSortable?: boolean,
+    source:      string,
+    title?:      string | null,
+    width?:      string | number
 }
 
 function HeaderField({source, title, isSortable = true, ...props}: IHeaderProps) {
@@ -49,10 +49,23 @@ function HeaderField({source, title, isSortable = true, ...props}: IHeaderProps)
         setSortOptions({order, column: source});
     }
 
+    function renderTitle() {
+        if (null === title) {
+            return null;
+        }
+
+        if (undefined !== title) {
+            return title;
+        }
+
+        const result = source.replace( /([A-Z])/g, " $1" );
+        return result.charAt(0).toUpperCase() + result.slice(1);
+    }
+
     return (
         <div {...props} onClick={handleClick} className={s.root} style={resolveStyles(props)}>
             <span className={c.title}>
-                {title}
+                {renderTitle()}
             </span>
 
             {sortOrder !== "NONE" && sortOptions.column === source && (

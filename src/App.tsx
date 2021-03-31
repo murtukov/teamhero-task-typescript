@@ -7,7 +7,7 @@ import TagsField from "./components/table/fields/TagsField";
 import IconsField from "./components/table/fields/IconsField";
 import TableProvider from "./components/table/TableProvider";
 import testData from "./test-data";
-import FilterPanel from "./components/filter-component/FilterPanel";
+import FilterPanel from "./components/filter-panel/FilterPanel";
 import Table from "./components/table/Table";
 import Icon, {IconName} from "./components/icon/Icon";
 
@@ -25,13 +25,13 @@ function App() {
                 </div>
                 <div className='right-column'>
                     <Table>
-                        <ImageField  title={null} source='avatar' width={35}/>
-                        <StringField title='First Name' source='firstName' bold width={105}/>
-                        <StringField title='Last Name' source='lastName' bold />
-                        <EmailField  title='Email' source='email'/>
-                        <TagsField   title='Skills' source='skills'/>
-                        <IconsField  title='Todos' source='todos' renderer={iconRenderer} width={85}/>
-                        <StringField title='City' source='location' />
+                        <ImageField source='avatar' title={null} width={35}/>
+                        <StringField source='firstName' bold width={105}/>
+                        <StringField source='lastName' bold/>
+                        <EmailField source='email' title='E-Mail'/>
+                        <TagsField source='skills'/>
+                        <IconsField source='todos' renderer={iconRenderer} width={85}/>
+                        <StringField source='location' title='City'/>
                     </Table>
                 </div>
             </div>

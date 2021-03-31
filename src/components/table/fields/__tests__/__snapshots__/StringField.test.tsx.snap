@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StringField component renders correctly 1`] = `
+<div
+  class="cell-0-2-1 cell-d0-0-2-2"
+>
+  This is a test string
+</div>
+`;

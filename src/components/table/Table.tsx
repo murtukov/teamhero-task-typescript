@@ -1,18 +1,19 @@
-import React, {useContext} from 'react';
+import React, {useContext, Children} from 'react';
 import HeaderField from "./header-field/HeaderField";
-import s from './styles.module.css';
 import {TableContext} from "./TableProvider";
 import {IFieldProps} from "./fields/sharedProps";
+import useStyles from "./styles";
 
-interface ITableProps {
-    children: React.ReactElement<IFieldProps>[]
+export interface ITableProps {
+    children: React.ReactElement<IFieldProps> | React.ReactElement<IFieldProps>[]
 }
 
-function Table({children: fields}: ITableProps) {
+function Table({children, ...rest}: ITableProps) {
+    const c = useStyles();
     const {data} = useContext(TableContext);
 
-    // Create mapping
-    const columns = fields.map(({props, type}) => ({
+    // Create table mapping
+    const columns = Children.map(children, ({props, type}) => ({
         builderProps: {
             source: props.source,
             title: props.title,
@@ -24,24 +25,26 @@ function Table({children: fields}: ITableProps) {
     }));
 
     return (
-        <div className={s.root}>
-            <div className={s.headerRow}>
+        <div className={c.table} {...rest}>
+            <div className={c.headerRow}>
                 {columns.map(({builderProps}, i) =>
                     <HeaderField {...builderProps} key={i}/>
                 )}
             </div>
 
-            {data.map((row, i) =>
-                <div className={s.row} key={i}>
-                    {columns.map(({builderProps, type: Field, fieldProps}, j) =>
-                        <Field
-                            data={row[builderProps.source]}
-                            {...fieldProps}
-                            key={j}
-                        />
-                    )}
-                </div>
-            )}
+            <div className={c.tableBody} data-testid='table-body'>
+                {data.map((row, i) =>
+                    <div className={c.tableRow} key={i}>
+                        {columns.map(({builderProps, type: Field, fieldProps}, j) =>
+                            <Field
+                                data={row[builderProps.source as string]}
+                                {...fieldProps}
+                                key={j}
+                            />
+                        )}
+                    </div>
+                )}
+            </div>
         </div>
     );
 }

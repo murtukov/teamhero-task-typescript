@@ -17,7 +17,7 @@ function StringField({data, bold = false}: IStringFieldProps) {
     }
 
     return (
-        <div className={classes.root} style={styles}>
+        <div className={classes.cell} style={styles}>
             {data}
         </div>
     );

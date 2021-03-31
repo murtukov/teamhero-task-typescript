@@ -5,7 +5,7 @@ import { createUseStyles } from "react-jss";
 
 export interface IIconsFieldProps extends IFieldProps {
     data?: any[],
-    // The icon rendering method is defined by users
+    // The icon rendering callback is defined by users
     renderer: (icon: any, index: number) => JSX.Element
 }
 
@@ -17,7 +17,7 @@ function IconsField({data, renderer}: IIconsFieldProps) {
     }
 
     return (
-        <div className={c.root}>
+        <div className={c.cell}>
             <span className={c.wrapper}>
                 {data.map((icon, i) => renderer(icon, i))}
             </span>
