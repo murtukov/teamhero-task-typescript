@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TagsField component renders correctly 1`] = `
+exports[`TagsField component matches snapshot 1`] = `
 <div
   class="cell-0-2-1 cell-d0-0-2-3"
 >

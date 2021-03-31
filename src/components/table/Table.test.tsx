@@ -20,7 +20,7 @@ export function renderWithProvider(ui: React.ReactElement, options?: RenderOptio
 
 describe('Table component', () => {
     it('has the same amount of rows as input array', () => {
-        const { getByTestId } = renderWithProvider(
+        const {getByTestId} = renderWithProvider(
             <Table>
                 <StringField source='firstName'/>
                 <StringField source='lastName'/>
@@ -31,7 +31,7 @@ describe('Table component', () => {
     });
 
     it('has the same amount of columns as input array entry', () => {
-        const { getByTestId } = renderWithProvider(
+        const {getByTestId} = renderWithProvider(
             <Table data-testid='table'>
                 <StringField source='firstName'/>
                 <StringField source='firstName'/>
@@ -46,26 +46,7 @@ describe('Table component', () => {
         expect(firstRow.children).toHaveLength(5);
     });
 
-    it('filters rows by tags', () => {
-        const { getByText, getByTestId } = renderWithProvider(
-            <Table data-testid='table'>
-                <TagsField source='skills'/>
-            </Table>
-        );
-
-        const tableBody = getByTestId('table-body');
-
-        // Before filtering there are 9 rows
-        expect(tableBody.children.length).toBe(9);
-
-        // Click on a tag, to filter
-        fireEvent.click(getByText('Assassination'));
-
-        // After filtering there is only 1 row
-        expect(tableBody.children.length).toBe(1);
-    })
-
-    it('sorts rows correctly', async () => {
+    describe('Filtering and sorting', () => {
         const title    = "First Name";
         const names    = ['Alfred', 'Albert', 'Timur', 'John', 'Timur', 'Mia', 'Martin', 'Barack', 'Dan'];
         const ascNames = ['Albert', 'Alfred', 'Barack', 'Dan', 'John', 'Martin', 'Mia', 'Timur', 'Timur'];
@@ -76,24 +57,64 @@ describe('Table component', () => {
             })
         }
 
-        const { getByText, getByTestId } = renderWithProvider(
-            <Table data-testid='table'>
-                <StringField source='firstName' title={title}/>
-            </Table>
-        );
+        function getTableParts() {
+            const {getByText, getAllByText, getByTestId} = renderWithProvider(
+                <Table>
+                    <StringField source='firstName' title={title}/>
+                    <TagsField source='skills'/>
+                </Table>
+            );
 
-        const header    = getByText(title);
-        const tableBody = getByTestId('table-body');
+            const header    = getByText(title);
+            const tableBody = getByTestId('table-body');
+            const tag       = getAllByText('English')[0];
 
-        // No sorting
-        expect(mapUIToArray(tableBody.children)).toEqual(names);
+            return {header, tableBody, tag};
+        }
 
-        // Set sorting to ASC (▼)
-        fireEvent.click(header);
-        expect(mapUIToArray(tableBody.children)).toEqual(ascNames);
+        it('filters rows by tags', () => {
+            const {tableBody, tag} = getTableParts();
 
-        // Set sorting to DESC (▲)
-        fireEvent.click(header);
-        expect(mapUIToArray(tableBody.children)).toEqual(ascNames.reverse());
-    });
+            // Before filtering there are 9 rows
+            expect(tableBody.children).toHaveLength(9);
+
+            // Click on a tag, to filter
+            fireEvent.click(tag);
+
+            // After filtering there is only 1 row
+            expect(tableBody.children).toHaveLength(3);
+        })
+
+        it('sorts rows', async () => {
+            const {header, tableBody} = getTableParts();
+
+            // No sorting
+            expect(mapUIToArray(tableBody.children)).toEqual(names);
+
+            // Set sorting to ASC (▼)
+            fireEvent.click(header);
+            expect(mapUIToArray(tableBody.children)).toEqual(ascNames);
+
+            // Set sorting to DESC (▲)
+            fireEvent.click(header);
+            expect(mapUIToArray(tableBody.children)).toEqual(ascNames.reverse());
+        });
+
+        it('sorts & filters', () => {
+            const {header, tableBody, tag} = getTableParts();
+
+            // Filter
+            fireEvent.click(tag);
+
+            // Set sorting to ASC (▼)
+            fireEvent.click(header);
+            expect(mapUIToArray(tableBody.children)).toEqual(['Alfred', 'John', 'Timur']);
+
+            // Set sorting to DESC (▲)
+            fireEvent.click(header);
+            expect(mapUIToArray(tableBody.children)).toEqual(['Alfred', 'John', 'Timur'].reverse());
+        });
+    })
+
+
 });

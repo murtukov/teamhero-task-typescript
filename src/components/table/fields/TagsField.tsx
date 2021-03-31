@@ -25,8 +25,8 @@ function TagsField({data, source}: ITagsFieldProps) {
 
     return (
         <div className={c.cell}>
-            {data.map((tag, i) =>
-                <span className={c.tag} onClick={() => handleClick(tag)} key={i}>
+            {data.map((tag) =>
+                <span className={c.tag} onClick={() => handleClick(tag)} key={tag}>
                     {tag}
                 </span>
             )}
